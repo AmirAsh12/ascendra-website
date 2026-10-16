@@ -2,14 +2,15 @@
 const fs = require('fs'), path = require('path');
 const { icon, esc, launch } = require('./common');
 const day = +process.argv[2]; const out = process.argv[3] || path.join(__dirname, 'out', 'day' + day);
-const L = require('./lessons.js').find(l => l.day === day);
+const SER = require('./series.js');
+const L = SER.lessons.find(l => l.day === day);
 if (!L) throw new Error('no lesson ' + day);
 fs.mkdirSync(out, { recursive: true });
 
 const check = icon('check', 18, '#22A06B', 3.2);
 const footerRight = L.offer === 2
   ? `<div class="offer"><b>1-to-1 LinkedIn &amp; CV help</b><span>£20 per hour · message me to book</span></div>`
-  : `<div class="brand">${icon('mountain', 34, '#F2B544', 2.4)}<div><div class="nm">ASCENDRA</div><small>${L.offer === 1 ? 'Need help? Send me a message' : 'Follow for the next lesson'}</small></div></div>`;
+  : `<div class="brand">${icon(SER.mark, 34, '#F2B544', 2.4)}<div><div class="nm">ASCENDRA</div><small>${L.offer === 1 ? 'Need help? Send me a message' : 'Follow for the next lesson'}</small></div></div>`;
 
 const html = `<!doctype html><html><head><meta charset="utf-8"><style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -58,9 +59,9 @@ body{width:1080px;height:1350px;font-family:Inter,sans-serif;background:#F4F7FB;
   <g fill="#fff" opacity=".45">${Array.from({ length: 50 }, (_, i) => `<circle cx="${(i * 173 + day * 37) % 1080}" cy="${(i * 97) % 140 + 8}" r="${i % 3 ? 1 : 1.6}"/>`).join('')}</g>
   <path d="M0 220 L120 150 L210 195 L330 110 L430 185 L540 80 L650 175 L760 120 L880 195 L980 140 L1080 185 L1080 290 L0 290Z" fill="#2A6DAE" opacity=".35"/>
   <path d="M0 250 L150 195 L260 228 L400 168 L540 128 L690 186 L820 158 L960 210 L1080 186 L1080 290 L0 290Z" fill="#1A4A80" opacity=".8"/>
-  ${Array.from({ length: 14 }, (_, i) => `<rect x="${360 + i * 26}" y="76" width="18" height="6" rx="3" fill="${i < day ? '#F2B544' : 'rgba(255,255,255,.22)'}"/>`).join('')}
+  ${Array.from({ length: SER.total }, (_, i) => `<rect x="${540 - SER.total * 13 + i * 26}" y="76" width="18" height="6" rx="3" fill="${i < day ? '#F2B544' : 'rgba(255,255,255,.22)'}"/>`).join('')}
 </svg>
-<div class="chip">LINKEDIN FROM ZERO · LESSON ${day} OF 14</div>
+<div class="chip">${esc(SER.label(day).toUpperCase())}</div>
 <div class="title"><h1>${esc(L.titleA)}<em>${esc(L.titleB)}</em></h1><p>${esc(L.subtitle)}</p></div>
 </div>
 <div class="sec"><span>WHY IT MATTERS</span></div>
@@ -73,12 +74,12 @@ body{width:1080px;height:1350px;font-family:Inter,sans-serif;background:#F4F7FB;
   <div class="col av"><div class="hd">${icon('ban', 18, '#fff', 2.4)}AVOID</div><ul>${L.avoid.map(x => `<li>${icon('circle-x', 18, '#C9302C', 2.4)}${esc(x)}</li>`).join('')}</ul></div>
 </div>
 <div class="tip">${icon('lightbulb', 26, '#C98A12', 2.2)}<span>${esc(L.tip)}</span></div>
-<div class="foot"><div class="vals"><span>${check}VISIBLE</span><span>${check}CREDIBLE</span><span>${check}FOUND</span></div>${footerRight}</div>
+<div class="foot"><div class="vals">${SER.vals.map(v => `<span>${check}${v}</span>`).join('')}</div>${footerRight}</div>
 </body></html>`;
 
 (async () => {
   const b = await launch(); const p = await b.newPage({ viewport: { width: 1080, height: 1350 } });
-  await p.setContent(html, { waitUntil: 'load' }); await p.waitForTimeout(200);
+  await p.setContent(SER.recolor(html), { waitUntil: 'load' }); await p.waitForTimeout(200);
   const m = await p.evaluate(() => ({ tipBottom: document.querySelector('.tip').getBoundingClientRect().bottom, footTop: document.querySelector('.foot').getBoundingClientRect().top,
     overflow: [...document.querySelectorAll('.s ul,.w p,.title h1')].some(e => e.scrollWidth > e.clientWidth + 1) }));
   await p.screenshot({ path: path.join(out, 'post.png') }); await b.close();

@@ -3,7 +3,8 @@ const fs = require('fs'), path = require('path');
 const { spawn, execFileSync } = require('child_process');
 const { icon, esc, launch, FONT } = require('./common');
 const day = +process.argv[2]; const OUT = path.resolve(process.argv[3]);
-const L = require('./lessons.js').find(l => l.day === day);
+const SER = require('./series.js');
+const L = SER.lessons.find(l => l.day === day);
 const TL = JSON.parse(fs.readFileSync(path.join(OUT, 'timeline.json')));
 const FPS = 30, W = 1080, H = 1920, DUR = Math.ceil(TL.duration * 10) / 10;
 const PREVIEW = process.argv.includes('--preview');
@@ -31,7 +32,7 @@ const ctaInner = L.offer === 2 ? `
   <div class="mail anim up" ${at(cA + 1.5)}>hello@ascendra-academy.co.uk</div>` : `
   <div class="anim pop" ${at(cA + .2)}>${icon('mountain', 150, '#D4AF37', 1.3)}</div>
   <div class="logo gold shimmer anim up" ${at(cA + .5)}>ASCENDRA</div>
-  <div class="kicker anim up" style="margin-top:18px" ${at(cA + .9)}>Next: Lesson ${day + 1} of 14</div>
+  <div class="kicker anim up" style="margin-top:18px" ${at(cA + .9)}>${esc(SER.next(day))}</div>
   <div class="pills"><div class="pill anim up" ${at(cA + 1.2)}>${icon('bookmark', 34, '#F5D88A', 2)}SAVE</div><div class="pill f anim up" ${at(cA + 1.4)}>${icon('plus', 34, '#14110B', 2.6)}FOLLOW</div></div>
   ${L.offer === 1 ? `<div class="mail anim up" ${at(cA + 1.7)}>Need help with your profile? Send me a message</div>` : ''}`;
 
@@ -102,10 +103,10 @@ h2.t em{font-style:italic;font-weight:700}
 <div id="top"><div class="brand">${icon('mountain', 40, '#D4AF37', 1.8)}<span class="gold shimmer">ASCENDRA</span></div><div id="prog"><div id="progf"></div></div></div>
 
 <div class="scene anim" ${win('hook')} data-noshift="1">
-  <div class="kicker anim up" ${at(.4)}>LinkedIn from Zero · Lesson ${day} of 14</div>
+  <div class="kicker anim up" ${at(.4)}>${esc(SER.label(day))}</div>
   <div class="rule anim" ${at(.7)}></div>
   <h1 class="big anim up" ${at(.9)}>${esc(L.titleA)}<em class="gold shimmer">${esc(L.titleB)}</em></h1>
-  <div class="dots anim up" ${at(1.4)}>${Array.from({ length: 14 }, (_, i) => `<i class="${i < day ? 'on' : ''}"></i>`).join('')}</div>
+  <div class="dots anim up" ${at(1.4)}>${Array.from({ length: SER.total }, (_, i) => `<i class="${i < day ? 'on' : ''}"></i>`).join('')}</div>
   <div class="sub anim up" ${at(1.8)}>${esc(L.subtitle.replace(/^Lesson \d+: /, ''))}</div>
 </div>
 
@@ -154,7 +155,7 @@ window.render=function(t,f){
 </script></body></html>`;
 
 (async () => {
-  const hp = path.join(OUT, 'video.html'); fs.writeFileSync(hp, html);
+  const hp = path.join(OUT, 'video.html'); fs.writeFileSync(hp, SER.recolor(html));
   const b = await launch(); const p = await b.newPage({ viewport: { width: W, height: H } });
   await p.goto('file://' + hp, { waitUntil: 'load' }); await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(400);
   if (PREVIEW) { for (const t of process.argv.filter(a => /^\d/.test(a)).slice(1).map(Number)) { await p.evaluate(([t, f]) => render(t, f), [t, Math.round(t * FPS)]); await p.screenshot({ path: path.join(OUT, `prev_${t}.jpg`), type: 'jpeg', quality: 80 }); } await b.close(); return; }

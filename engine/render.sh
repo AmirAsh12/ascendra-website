@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # Usage: bash render.sh <day>   -> out/day<N>/{post.png, short.mp4, meta.json}
 set -euo pipefail
-DAY="$1"; ENG="$(cd "$(dirname "$0")" && pwd)"; OUT="$ENG/out/day$DAY"; MODELS="${MODELS:-$ENG/models}"
+DAY="$1"; ENG="$(cd "$(dirname "$0")" && pwd)"; PFX=$([ "${SERIES:-}" = claude ] && echo claude || echo day); OUT="$ENG/out/$PFX$DAY"; MODELS="${MODELS:-$ENG/models}"
 mkdir -p "$OUT"
 cd "$ENG"
-node -e "const L=require('./lessons.js').find(l=>l.day===$DAY);require('fs').writeFileSync('$OUT/lesson.json',JSON.stringify(L,null,1))"
+node -e "const L=require('./series.js').lessons.find(l=>l.day===$DAY);require('fs').writeFileSync('$OUT/lesson.json',JSON.stringify(L,null,1))"
 node infographic.js "$DAY" "$OUT"
 python3 tts.py "$OUT/lesson.json" "$MODELS" "$OUT"
 DUR=$(python3 -c "import json;print(json.load(open('$OUT/timeline.json'))['duration']+0.5)")
