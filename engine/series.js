@@ -1,4 +1,5 @@
 // Picks the series to render. Default: LinkedIn from Zero (navy and gold).
+// SERIES=levelup: LinkedIn Level Up (navy and gold, follows LinkedIn from Zero), media goes to media/levelup<N>/.
 // SERIES=claude: Claude for Work (warm dark and Claude orange), media goes to media/claude<N>/.
 const claude = process.env.SERIES === 'claude';
 const SWAP = [
@@ -14,7 +15,11 @@ const SWAP = [
   ['#22A06B', '#D97757'], ['#0B6E5F', '#3A2A22'], ['#E3F5EE', '#FBE6DC'], ['#EEF4FA', '#F6EEE8'], ['#D5DEEA', '#EADDD3'],
   ['#0B1F3A', '#2A1C16'], ['#F4F7FB', '#FAF6F1'], ['#C9D7EA', '#F1D9CC'], ['#9FB3CC', '#D9B9A8'],
 ];
-module.exports = claude ? {
+module.exports = process.env.SERIES === 'levelup' ? {
+  key: 'levelup', name: 'LinkedIn Level Up', total: 8, lessons: require('./levelup_lessons.js'),
+  label: d => `LinkedIn Level Up · Lesson ${d}`, next: d => 'Next: another LinkedIn lesson',
+  recolor: html => html, vals: ['VISIBLE', 'CREDIBLE', 'FOUND'], mark: 'mountain',
+} : claude ? {
   key: 'claude', name: 'Claude for Work', total: 7, lessons: require('./claude_lessons.js'),
   label: d => `Claude for Work · Lesson ${d}`, next: d => 'Next: another Claude lesson',
   recolor: html => SWAP.reduce((h, [a, b]) => h.split(a).join(b), html),

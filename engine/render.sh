@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Usage: bash render.sh <day>   -> out/day<N>/{post.png, short.mp4, meta.json}
 set -euo pipefail
-DAY="$1"; ENG="$(cd "$(dirname "$0")" && pwd)"; PFX=$([ "${SERIES:-}" = claude ] && echo claude || echo day); OUT="$ENG/out/$PFX$DAY"; MODELS="${MODELS:-$ENG/models}"
+DAY="$1"; ENG="$(cd "$(dirname "$0")" && pwd)"; PFX=$(case "${SERIES:-}" in claude) echo claude;; levelup) echo levelup;; *) echo day;; esac); OUT="$ENG/out/$PFX$DAY"; MODELS="${MODELS:-$ENG/models}"
 mkdir -p "$OUT"
 cd "$ENG"
 node -e "const L=require('./series.js').lessons.find(l=>l.day===$DAY);require('fs').writeFileSync('$OUT/lesson.json',JSON.stringify(L,null,1))"
