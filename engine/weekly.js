@@ -24,4 +24,27 @@ module.exports = [
     },
     igCaption: "New here? Meet Ollie 🦉 and catch up on this week's lessons\n\n💬 Comment your way to visibility\n🔍 LinkedIn's job search tools\n📄 Match your CV and LinkedIn\n✅ Your complete LinkedIn checklist\n\n📌 Save this to catch up later\n➡️ Follow Ascendra for a new lesson every day\n\n#LinkedInTips #CareerGrowth #JobSearchTips #PersonalBranding #Ascendra",
   },
+  {
+    week: 2,
+    publishDate: '2026-11-01',
+    title: ['Missed a lesson?', 'Catch up here'],
+    about: 'Ascendra teaches LinkedIn and AI skills, one simple step at a time.',
+    recap: [
+      ['list-checks', 'Your LinkedIn checklist', 'The full series in one place'],
+      ['file-text', 'Summarise a long report', 'Fast, and safely checked'],
+      ['eye', 'Seen before they click', 'Fix your tiny preview'],
+      ['mail', 'Hard email, right tone', 'Say no, chase or apologise'],
+    ],
+    script: {
+      hook: "Hoot hoot! Ollie here with your recap.",
+      recap: [
+        'Your LinkedIn checklist.',
+        'Summarise reports safely.',
+        'Fix your profile preview.',
+        'Nail the hard email.',
+      ],
+      cta: 'Follow for more!',
+    },
+    igCaption: "Missed a lesson? Ollie 🦉 has your weekly catch-up\n\n✅ Your complete LinkedIn checklist\n📄 Summarise a long report with Claude, safely\n👀 Recruiters judge you before they click\n✉️ Hard email? Get the tone right\n\n📌 Save this to catch up later\n➡️ Follow Ascendra for new LinkedIn and AI lessons every week\n\n#LinkedInTips #AI #Claude #CareerGrowth #Ascendra",
+  },
 ];

@@ -181,4 +181,74 @@ Goal, reader, facts, tone. Then make it sound like you.
   youtube: { title: 'Write a Hard Email With AI in the Right Tone (Claude for Work 5) #shorts', description: 'Lesson 5 of Claude for Work by Ascendra: five steps to draft an email that says no, chases or apologises, without sounding rude or robotic.\n#AI #Claude #Productivity #Ascendra' },
   tags: TAGS,
 },
+{
+  day: 6, offer: 0, titleA: 'Messy To-Do List?', titleB: 'Plan Your Week', subtitle: 'Lesson 6: turn a long list into priorities',
+  why: [['brain', 'Get it out of your head', 'One list, not ten'], ['list-ordered', 'See what matters first', 'Not just what is loudest'], ['calendar-days', 'A plan that fits', 'Built around your real time']],
+  steps: [['list-todo', 'Dump everything', ['Every task, in any order', 'Leave out private details']], ['clock', 'Add the facts', ['Deadlines and who is waiting', 'Rough time for each task']], ['list-ordered', 'Ask it to sort', ['"Urgent and important first"', '"Group the small jobs"']], ['calendar-days', 'Fit it to your week', ['"I have about 3 free hours a day"', 'Ask for a day-by-day plan']], ['scissors', 'You decide', ['Move, cut or delegate', 'Check it again on Friday']]],
+  do: ['Give real deadlines', 'Say how much time you have', 'Make the final call yourself'], avoid: ['Pasting confidential details', 'A plan with no breaks', 'Following it blindly'],
+  tip: 'Pro tip: ask "What could I drop this week?"',
+  script: { hook: ['A long to-do list is not a plan.', 'Here is how Claude turns it into one.'], stepsIntro: 'Five steps.', steps: ['Dump every task into one message, without private details.', 'Add deadlines, and who is waiting on what.', 'Ask Claude to put the urgent and important first.', 'Tell it how much time you really have each day.', 'Then you decide what to move, cut, or hand over.'], doAvoid: 'Give it real deadlines, and make the final call yourself.', cta: 'Follow Ascendra for the next Claude lesson.' },
+  linkedin: `A long to-do list is not a plan
+
+Claude for Work, lesson 6.
+
+Most to-do lists treat every task the same. The email to a client sits next to "order printer paper", and the loudest job wins. Claude can help you sort it, as long as you give it the facts.
+
+1️⃣ Dump everything: every task in one message, in any order (no private details)
+2️⃣ Add the facts: deadlines, who's waiting, and a rough time for each
+3️⃣ Ask it to sort: "urgent and important first, group the small jobs"
+4️⃣ Fit it to your week: "I have about 3 free hours a day, give me a day-by-day plan"
+5️⃣ You decide: move, cut or delegate, then check it again on Friday
+
+Bonus: ask "What could I drop this week without much harm?"
+
+What's sitting at the top of your to-do list right now? 👇
+
+#AI #Claude #Productivity #TimeManagement #Ascendra`,
+  instagram: `Claude for Work, lesson 6: a to-do list is not a plan 🗓️
+
+Dump it, add deadlines, ask Claude to sort it, fit it to your real time. Then you make the call.
+
+📌 Save this for Monday morning
+➡️ Follow for the next Claude lesson
+
+#AI #Claude #Productivity #AITips #Ascendra`,
+  youtube: { title: 'Turn a Messy To-Do List Into a Weekly Plan With AI (Claude for Work 6) #shorts', description: 'Lesson 6 of Claude for Work by Ascendra: five steps to turn a long to-do list into clear priorities and a realistic plan for your week.\n#AI #Claude #Productivity #Ascendra' },
+  tags: TAGS,
+},
+{
+  day: 7, offer: 0, titleA: 'Before You Send', titleB: 'Ask for a Critique', subtitle: 'Lesson 7: use Claude to check your own work',
+  why: [['eye', 'Fresh eyes on demand', 'Spot what you stopped seeing'], ['pen-line', 'Keep your own voice', 'Feedback, not a rewrite'], ['shield-check', 'Catch it early', 'Before your manager does']],
+  steps: [['file-text', 'Paste your draft', ['Email, report or CV', 'Remove private details first']], ['users', 'Say who it is for', ['The reader and the goal', '"My manager needs to approve this"']], ['message-square-warning', 'Ask for problems only', ['"List the 3 biggest issues"', '"Don\'t rewrite it"']], ['spell-check', 'Ask specific checks', ['Unclear sentences, missing info', 'Tone and length']], ['pencil', 'Fix it yourself', ['Keep the points you agree with', 'Ignore the rest']]],
+  do: ['Ask for honest feedback', 'Name the reader and goal', 'Make the edits yourself'], avoid: ['Asking "Is this good?"', 'Accepting every suggestion', 'Pasting confidential work'],
+  tip: 'Pro tip: ask "What would a busy reader skip?"',
+  script: { hook: ['Asking AI to rewrite your work is not the best use.', 'Ask it to critique your work instead.'], stepsIntro: 'Five steps.', steps: ['Paste your draft, without private details.', 'Say who it is for, and what it needs to do.', 'Ask for the three biggest problems. No rewrite.', 'Ask it to check clarity, missing points and tone.', 'Then fix it yourself, and keep your own voice.'], doAvoid: 'Ask for honest feedback, and do not accept every suggestion.', cta: 'Follow Ascendra for the next Claude lesson.' },
+  linkedin: `Don't ask AI to rewrite it. Ask it to critique it
+
+Claude for Work, lesson 7.
+
+When you ask Claude to "improve this", you often get back something polished that no longer sounds like you. Asking for a critique keeps your voice and still catches the problems.
+
+1️⃣ Paste your draft: an email, report or CV (remove private details first)
+2️⃣ Say who it's for: the reader and the goal, "my manager needs to approve this"
+3️⃣ Ask for problems only: "list the 3 biggest issues, don't rewrite it"
+4️⃣ Ask specific checks: unclear sentences, missing information, tone and length
+5️⃣ Fix it yourself: keep the points you agree with, ignore the rest
+
+Bonus: ask "What would a busy reader skip?"
+
+What would you ask Claude to check first: an email, a report or your CV? 👇
+
+#AI #Claude #Productivity #Writing #Ascendra`,
+  instagram: `Claude for Work, lesson 7: don't ask for a rewrite, ask for a critique 🔍
+
+Paste your draft, name the reader, ask for the 3 biggest problems. Then fix it in your own words.
+
+📌 Save this for your next important email
+➡️ Follow for the next Claude lesson
+
+#AI #Claude #Productivity #AITips #Ascendra`,
+  youtube: { title: 'Use AI to Critique Your Work Before You Send It (Claude for Work 7) #shorts', description: 'Lesson 7 of Claude for Work by Ascendra: five steps to get honest feedback on a draft from Claude while keeping your own voice.\n#AI #Claude #Productivity #Ascendra' },
+  tags: TAGS,
+},
 ];
